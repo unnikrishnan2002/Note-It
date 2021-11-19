@@ -38,3 +38,6 @@ Apk Link : [Note-It](https://www.mediafire.com/file/sqr6h93padvowbl/app-debug.ap
 
 ## Build-tool 🧰
 You need to have [Android Studio](https://developer.android.com/studio) to build this project.
+
+## Contributions 
+Refer to [CONTRIBUTING.md](https://github.com/unnikrishnan2002/Note-It/blob/master/CONTRIBUTING.md)
