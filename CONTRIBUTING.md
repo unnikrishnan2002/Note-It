@@ -19,7 +19,7 @@ Questions can be asked by raising an [Issue](https://github.com/unnikrishnan2002
   git clone https://github.com/yourGithubUsername/Note-It.git
 ```
 
-- Switch to the cloned folder. This can be done with Gitbash or the integrated terminal in the VSCode editor.
+- Switch to the cloned folder. This can be done with Gitbash.
 
 ```
   cd Note-It
