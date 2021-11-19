@@ -7,7 +7,7 @@
 2. Make any changes in your forked repo
 3. On this repo, click `Pull Requests` (which is the third option at the top of this page after the options `Code` and `Issues`) and raise a Pull Request by clicking the green `New Pull Request` button and selecting your fork from the right drop down field.
 
-Questions can be asked by raising an [Issue](https://github.com/unnikrishnan2002/Note-It/issues).
+If you have a new feature or encountered a bug, You can raise an issue [Issue](https://github.com/unnikrishnan2002/Note-It/issues).
 
 ## How to clone repo and make changes locally after forking
 
