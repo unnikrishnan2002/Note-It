@@ -73,11 +73,10 @@ nothing to commit, working tree clean*
 
 In case you get an error message like the one below, its likely you forgot to fork the repo before cloning it. To fix this, its best to start over with the How to Contribute section above, and fork the project repo first.
 
-```
-ERROR: Permission to unnikrishnan2002/Noted-It.git denied to <your-github-username>.
+
+*ERROR: Permission to unnikrishnan2002/Noted-It.git denied to <your-github-username>.
 fatal: Could not read from remote repository.
-Please make sure you have the correct access rights and the repository exists.
-```
+Please make sure you have the correct access rights and the repository exists.*
 
 ## Making a pull request
 
