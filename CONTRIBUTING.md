@@ -96,8 +96,7 @@ Hurray! You successfully made a contribution! 🎉
 1. On GitHub.com, navigate to the main page of the repository.
 2. Under your repository name, click `Issues`.
 3. Click [New issue](https://github.com/unnikrishnan2002/Note-It/issues/new/choose).
-4. If your repository uses issue templates, click Get started next to the type of issue you'd like to open.
-Or, click Open a blank issue if the type of issue you'd like to open isn't included in the available options.
+4. Click Open a blank issue give the issue a title and give the discription explaining your issue.
 5. Type a title and description for your issue.
 6. If you're a project maintainer, you can assign the issue to someone, add it to a project board, associate it with a milestone, or apply a label.
 7. When you're finished, click `Submit new issue`.
