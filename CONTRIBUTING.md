@@ -1,5 +1,5 @@
 # Note-It
-Contributing to this repo? Follow the steps below to set-up the project in your local system, making changes and making a pull request.
+ Want to contribute to this repo? Follow the steps below to set-up the project in your local system, making changes and making a pull request.
 
 ## How to contribute (overall process)
 
