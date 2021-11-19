@@ -60,10 +60,10 @@ Now this is your copy of project.
 
 - The response should be like this:
 
-```
-On branch <name-of-your-branch>
-nothing to commit, working tree clean
-```
+
+*On branch <name-of-your-branch>
+nothing to commit, working tree clean*
+
 
 - Pushing your repository to GitHub.
 
