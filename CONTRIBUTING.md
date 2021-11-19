@@ -98,6 +98,5 @@ Hurray! You successfully made a contribution! 🎉
 3. Click [New issue](https://github.com/unnikrishnan2002/Note-It/issues/new/choose).
 4. Click Open a blank issue give the issue a title and give the discription explaining your issue.
 5. Type a title and description for your issue.
-6. If you're a project maintainer, you can assign the issue to someone, add it to a project board, associate it with a milestone, or apply a label.
-7. When you're finished, click `Submit new issue`.
+6. When you're finished, click `Submit new issue`.
 
