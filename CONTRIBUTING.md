@@ -34,7 +34,7 @@ Questions can be asked by raising an [Issue](https://github.com/unnikrishnan2002
 ## Making desired changes
 
 Now this is your copy of project. 
-1. You can find the folder name `Noted-It` in one of your local drives. Open that folder in the IDE of your choice like VS Code.
+1. You can find the folder name `Note-It` in one of your local drives. Open that folder in the `Android Studio`.
 2. Make the desired changes according to the issue that you have chosen to solve from the `Issues` section on the organization's github repo.
 3. And you ready to be able see the changes that you have made in your forked copy of repo. Again follow the steps below.
 
