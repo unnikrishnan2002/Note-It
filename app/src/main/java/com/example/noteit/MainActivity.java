@@ -13,6 +13,8 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import java.io.File;
 import java.nio.file.Files;
 import java.util.ArrayList;
@@ -21,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
     public static final String EXTRA_MESSAGE = "com.example.noteit.MESSAGE";
     Button addNote;
+    FloatingActionButton insertNote;
     static ArrayAdapter adapter;
 
     @Override
@@ -45,8 +48,8 @@ public class MainActivity extends AppCompatActivity {
         ListView listview = (ListView) findViewById(R.id.listview);
         listview.setAdapter(adapter);
 
-        addNote = findViewById(R.id.addNote);
-
+        //addNote = findViewById(R.id.addNote);
+        insertNote = findViewById(R.id.addNote);
 
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
