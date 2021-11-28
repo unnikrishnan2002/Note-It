@@ -13,6 +13,8 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.google.android.material.button.MaterialButton;
+
 import java.io.File;
 import java.nio.file.Files;
 import java.util.ArrayList;
@@ -20,7 +22,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
     public static final String EXTRA_MESSAGE = "com.example.noteit.MESSAGE";
-    Button addNote;
+    MaterialButton addNote;
     static ArrayAdapter adapter;
 
     @Override
@@ -45,7 +47,14 @@ public class MainActivity extends AppCompatActivity {
         ListView listview = (ListView) findViewById(R.id.listview);
         listview.setAdapter(adapter);
 
-        addNote = findViewById(R.id.addNote);
+        addNote = (MaterialButton) findViewById(R.id.addNote);
+        addNote.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, EditNoteActivity.class);
+                startActivity(i);
+            }
+        });
 
 
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
