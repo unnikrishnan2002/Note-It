@@ -6,30 +6,18 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="175dp"
-        android:layout_height="54dp"
-        android:layout_marginTop="4dp"
-        android:text="NOTE IT"
-        android:textAlignment="center"
-        android:textColor="@color/yellow"
-        android:textSize="34sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <ListView
         android:id="@+id/listview"
         android:layout_width="404dp"
         android:layout_height="449dp"
-        android:padding="10dp"
         android:layout_marginStart="2dp"
         android:layout_marginEnd="2dp"
-        android:layout_marginBottom="14dp"
+        android:layout_marginBottom="140dp"
+        android:padding="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.333"
         app:layout_constraintStart_toStartOf="parent" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -37,13 +25,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:clickable="true"
+        android:onClick="launchCreateActivity"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.976"
-        android:onClick="launchCreateActivity"
+        app:layout_constraintVertical_bias="0.942"
         app:srcCompat="@android:drawable/ic_input_add" />
 
     <TextView
