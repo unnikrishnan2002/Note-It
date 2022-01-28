@@ -1,28 +1,26 @@
 package com.example.noteit;
 
-import static android.provider.AlarmClock.EXTRA_MESSAGE;
-
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
-import android.widget.Toast;
-
+import android.widget.RelativeLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
+import com.google.android.material.snackbar.Snackbar;
 import java.io.File;
-import java.nio.file.Files;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
     public static final String EXTRA_MESSAGE = "com.example.noteit.MESSAGE";
-    Button addNote;
+    RelativeLayout mainLayout;
     FloatingActionButton insertNote;
     static ArrayAdapter adapter;
 
@@ -30,6 +28,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //initialization
+        mainLayout=findViewById(R.id.mainLayout);
 
         File files = getFilesDir();
         String[] fileArray = files.list();
@@ -45,20 +46,16 @@ public class MainActivity extends AppCompatActivity {
             adapter.add(filename);
         }
 
-        ListView listview = (ListView) findViewById(R.id.listview);
+        ListView listview =findViewById(R.id.listview);
         listview.setAdapter(adapter);
 
-        //addNote = findViewById(R.id.addNote);
         insertNote = findViewById(R.id.addNote);
 
-        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                String item = listview.getItemAtPosition(i).toString();
-                Intent intent2 = new Intent(getApplicationContext(), ShowNotesActivity.class);
-                intent2.putExtra(EXTRA_MESSAGE, item);
-                startActivity(intent2);
-            }
+        listview.setOnItemClickListener((adapterView, view, i, l) -> {
+            String item = listview.getItemAtPosition(i).toString();
+            Intent intent2 = new Intent(getApplicationContext(), ShowNotesActivity.class);
+            intent2.putExtra(EXTRA_MESSAGE, item);
+            startActivity(intent2);
         });
     }
 
@@ -66,5 +63,44 @@ public class MainActivity extends AppCompatActivity {
 
         Intent intent = new Intent(this, CreateNoteActivity.class);
         startActivity(intent);
+    }
+
+    // deleteALl Files
+    public void deleteAllMethod() {
+        File dir = getFilesDir();
+        File file = new File(String.valueOf(dir));
+        File[] files= file.listFiles();
+
+            if(files.length == 0) {
+                Snackbar.make(mainLayout,
+                    "Nothing To Delete \uD83E\uDD70",
+                    3000).show();
+            }
+            else{
+                for (File value : files)
+                    value.delete();
+
+                Snackbar.make(mainLayout,
+                        "All Notes Are Deleted ⚡",
+                        3000).show();
+                adapter.clear();
+            }
+
+    }
+        //thunder
+    //🌻
+    //menu
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater=getMenuInflater();
+        inflater.inflate(R.menu.main_acitvity_menu,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if(item.getItemId()==R.id.deleteAll)
+            deleteAllMethod();
+        return super.onOptionsItemSelected(item);
     }
 }
