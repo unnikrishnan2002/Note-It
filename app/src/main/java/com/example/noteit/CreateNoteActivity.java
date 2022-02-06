@@ -40,7 +40,7 @@ public class CreateNoteActivity extends AppCompatActivity {
                   } catch (IOException e) {
                     e.printStackTrace();
                   }
-                    MainActivity.adapter.add(heading);
+                   // MainActivity.adapter.add(heading);
 
                     //clearing text fields
                     ETContent.setText("");

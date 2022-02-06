@@ -2,6 +2,8 @@ package com.example.noteit;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,11 +11,10 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.RelativeLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+
 import java.io.File;
 import java.util.ArrayList;
 
@@ -22,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String EXTRA_MESSAGE = "com.example.noteit.MESSAGE";
     RelativeLayout mainLayout;
     FloatingActionButton insertNote;
-    static ArrayAdapter adapter;
+    RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,32 +32,29 @@ public class MainActivity extends AppCompatActivity {
 
         //initialization
         mainLayout=findViewById(R.id.mainLayout);
+        recyclerView=findViewById(R.id.recyclerView);
 
+        ArrayList<String> arrayList = new ArrayList<>();
         File files = getFilesDir();
         String[] fileArray = files.list();
 
-        ArrayList<String> arrayList = new ArrayList<>();
-
-        adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, arrayList);
-
         for(String filename : fileArray){
-
             filename = filename.replace(".txt", "");
-            System.out.println(filename);
-            adapter.add(filename);
+            arrayList.add(filename);
         }
-
-        ListView listview =findViewById(R.id.listview);
-        listview.setAdapter(adapter);
 
         insertNote = findViewById(R.id.addNote);
 
-        listview.setOnItemClickListener((adapterView, view, i, l) -> {
-            String item = listview.getItemAtPosition(i).toString();
-            Intent intent2 = new Intent(getApplicationContext(), ShowNotesActivity.class);
-            intent2.putExtra(EXTRA_MESSAGE, item);
-            startActivity(intent2);
-        });
+        recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL));
+        RecyclerViewAdapter r=new RecyclerViewAdapter(arrayList);
+        recyclerView.setAdapter(r);
+
+//        listview.setOnItemClickListener((adapterView, view, i, l) -> {
+//            String item = listview.getItemAtPosition(i).toString();
+//            Intent intent2 = new Intent(getApplicationContext(), ShowNotesActivity.class);
+//            intent2.putExtra(EXTRA_MESSAGE, item);
+//            startActivity(intent2);
+//        });
     }
 
     public void launchCreateActivity(View view) {
@@ -83,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
                 Snackbar.make(mainLayout,
                         "All Notes Are Deleted ⚡",
                         3000).show();
-                adapter.clear();
+          //      adapter.clear();
             }
 
     }
