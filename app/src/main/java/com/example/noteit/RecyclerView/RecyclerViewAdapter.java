@@ -1,5 +1,6 @@
 package com.example.noteit.RecyclerView;
 
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,8 +31,47 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
           holder.header.setText(arrayList.get(position).getHeading());
           holder.desc.setText(arrayList.get(position).getDescription());
 
+          applyColor(holder,arrayList.get(position).getColor());
+
           holder.cardView.setOnClickListener(v-> listener.onItemClicked(arrayList.get(position)));
     }
+
+    private void applyColor(@NonNull ViewHolder holder,int color) {
+        switch (color) {
+            case 1:
+                holder.cardView.setCardBackgroundColor(Color.parseColor("#4E33FF"));
+                holder.header.setTextColor(Color.WHITE);
+                holder.desc.setTextColor(Color.WHITE);
+                break;
+            case 2:
+                holder.cardView.setCardBackgroundColor(Color.parseColor("#FFD700"));
+                holder.header.setTextColor(Color.BLACK);
+                holder.desc.setTextColor(Color.BLACK);
+                break;
+            case 3:
+                holder.cardView.setCardBackgroundColor(Color.parseColor("#E91E63"));
+                holder.header.setTextColor(Color.WHITE);
+                holder.desc.setTextColor(Color.WHITE);
+                break;
+            case 4:
+                holder.cardView.setCardBackgroundColor(Color.parseColor("#0AEBAF"));
+                holder.header.setTextColor(Color.BLACK);
+                holder.desc.setTextColor(Color.BLACK);
+                break;
+            case 5:
+                holder.cardView.setCardBackgroundColor(Color.parseColor("#FFFFFFFF"));
+                holder.header.setTextColor(Color.BLACK);
+                holder.desc.setTextColor(Color.BLACK);
+                break;
+            default:
+                holder.cardView.setCardBackgroundColor(Color.parseColor("#171C26"));
+                holder.header.setTextColor(Color.WHITE);
+                holder.desc.setTextColor(Color.WHITE);
+                break;
+        }
+    }
+
+
     @Override
     public int getItemCount() {
         return arrayList.size();

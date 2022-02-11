@@ -3,6 +3,7 @@ package com.example.noteit.RecyclerView;
 public class Data {
     private String heading;
     private String description;
+    private int color;
     
     public Data(){}
 
@@ -22,6 +23,12 @@ public class Data {
     }
     public String getDescription() {
         return description;
+    }
+    public int getColor() {
+        return color;
+    }
+    public void setColor(String color) {
+        this.color=Integer.parseInt(color);
     }
 
 }

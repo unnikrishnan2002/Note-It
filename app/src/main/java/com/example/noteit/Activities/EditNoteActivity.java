@@ -1,6 +1,7 @@
 package com.example.noteit.Activities;
 
 
+
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,6 +20,7 @@ public class EditNoteActivity extends AppCompatActivity {
 
     private static final String EXTRA_HEADER = "com.example.noteit.HEADER";
     private static final String EXTRA_DESCRIPTION = "com.example.noteit.DESCRIPTION";
+    private static final String EXTRA_COLOR = "com.example.noteit.COLOR";
     EditText heading,content;
     ImageView saveChanges,backFromEdit;
 
@@ -36,18 +38,20 @@ public class EditNoteActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String header = intent.getStringExtra(EXTRA_HEADER);
         String description = intent.getStringExtra(EXTRA_DESCRIPTION);
+        int color=Integer.parseInt(intent.getStringExtra(EXTRA_COLOR));
 
         heading.setText(header);
         content.setText(description);
 
         saveChanges.setOnClickListener(view -> {
-            String filename = header + ".txt";
+            String colorparser=":"+color;
+            String filename = header+colorparser+".txt";
             if(!content.getText().toString().trim().isEmpty()){
 
                 File dir = getFilesDir();
                 File file = new File(dir, filename);
                 file.delete();
-
+                filename=heading.getText().toString()+colorparser+".txt";
                 try {
                     FileOutputStream fout = openFileOutput(filename, MODE_PRIVATE);
                     fout.write(content.getText().toString().trim().getBytes());

@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity  implements  SelectListener{
 
     private static final String EXTRA_HEADER = "com.example.noteit.HEADER";
     private static final String EXTRA_DESCRIPTION = "com.example.noteit.DESCRIPTION";
+    private static final String EXTRA_COLOR="com.example.noteit.COLOR";
     RelativeLayout mainLayout;
     ImageView insertNote,deleteAll;
     RecyclerView recyclerView;
@@ -53,12 +54,14 @@ public class MainActivity extends AppCompatActivity  implements  SelectListener{
 
         File files = getFilesDir();
         String[] fileArray = files.list();
-
+        String[] split;
         for(String fileName : fileArray){
             fileName = fileName.replace(".txt", "");
+            split=fileName.split(":");
             Data data=new Data();
-            data.setHeading(fileName);
+            data.setHeading(split[0]);
             data.setDescription(readDescription(fileName));
+            data.setColor(split[split.length-1]);
             arrayList.add(data);
         }
 
@@ -75,14 +78,13 @@ public class MainActivity extends AppCompatActivity  implements  SelectListener{
             arrayList.clear();
             adapter.notifyDataSetChanged();
         });
-
-
     }
     @Override
     public void onItemClicked(Data data) {
             Intent intent = new Intent(this, EditNoteActivity.class);
             intent.putExtra(EXTRA_HEADER, data.getHeading());
             intent.putExtra(EXTRA_DESCRIPTION, data.getDescription());
+            intent.putExtra(EXTRA_COLOR, data.getColor()+"");
             startActivity(intent);
             adapter.notifyDataSetChanged();
     }
