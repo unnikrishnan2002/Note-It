@@ -1,31 +1,35 @@
-package com.example.noteit;
+package com.example.noteit.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
+import com.example.noteit.MainActivity;
+import com.example.noteit.R;
+
 import java.io.FileOutputStream;
 import java.io.IOException;
 
 public class CreateNoteActivity extends AppCompatActivity {
 
     EditText ETContent,ETHeading;
-    Button save;
+    ImageView save,backFromCreate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_note_editor);
+        setContentView(R.layout.activity_create_note);
 
+        ETHeading = findViewById(R.id.ETHeading);
+        ETContent = findViewById(R.id.ETContent);
         save = findViewById(R.id.save);
-        save.setOnClickListener(view -> {
+        backFromCreate=findViewById(R.id.backFromCreate);
 
-            ETHeading = findViewById(R.id.ETHeading);
-            ETContent = findViewById(R.id.ETContent);
+        save.setOnClickListener(view -> {
 
             String heading = ETHeading.getText().toString().trim();
             String content = ETContent.getText().toString().trim();
@@ -40,8 +44,6 @@ public class CreateNoteActivity extends AppCompatActivity {
                   } catch (IOException e) {
                     e.printStackTrace();
                   }
-                   // MainActivity.adapter.add(heading);
-
                     //clearing text fields
                     ETContent.setText("");
                     ETHeading.setText("");
@@ -55,6 +57,13 @@ public class CreateNoteActivity extends AppCompatActivity {
             }else{
                     Toast.makeText(getApplicationContext(), "Content Cannot Be Empty!", Toast.LENGTH_SHORT).show();
             }
+        });
+
+        backFromCreate.setOnClickListener(v -> {
+            //intent
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
         });
     }
 }

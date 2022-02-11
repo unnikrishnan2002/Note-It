@@ -13,4 +13,5 @@
     <color name="primaryDark">#10141C</color>
     <color name="primaryLightBlack">#171C26</color>
     <color name="colorGrey">#CACACA</color>
+    <color name="colorAccent">#4e33ff</color>
 </resources>

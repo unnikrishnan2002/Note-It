@@ -1,5 +1,6 @@
 package com.example.noteit;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
@@ -10,20 +11,32 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import android.widget.Toast;
+
+import com.example.noteit.Activities.CreateNoteActivity;
+import com.example.noteit.Activities.EditNoteActivity;
+import com.example.noteit.RecyclerView.Data;
+import com.example.noteit.RecyclerView.RecyclerViewAdapter;
+import com.example.noteit.RecyclerView.SelectListener;
 import com.google.android.material.snackbar.Snackbar;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity  implements  SelectListener{
 
-    public static final String EXTRA_MESSAGE = "com.example.noteit.MESSAGE";
+    private static final String EXTRA_HEADER = "com.example.noteit.HEADER";
+    private static final String EXTRA_DESCRIPTION = "com.example.noteit.DESCRIPTION";
     RelativeLayout mainLayout;
-    FloatingActionButton insertNote;
+    ImageView insertNote,deleteAll;
     RecyclerView recyclerView;
+    RecyclerViewAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,36 +44,69 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //initialization
+        insertNote = findViewById(R.id.addNote);
+        deleteAll=findViewById(R.id.deleteAll);
         mainLayout=findViewById(R.id.mainLayout);
         recyclerView=findViewById(R.id.recyclerView);
 
-        ArrayList<String> arrayList = new ArrayList<>();
+        ArrayList<Data> arrayList = new ArrayList<>();
+
         File files = getFilesDir();
         String[] fileArray = files.list();
 
-        for(String filename : fileArray){
-            filename = filename.replace(".txt", "");
-            arrayList.add(filename);
+        for(String fileName : fileArray){
+            fileName = fileName.replace(".txt", "");
+            Data data=new Data();
+            data.setHeading(fileName);
+            data.setDescription(readDescription(fileName));
+            arrayList.add(data);
         }
 
-        insertNote = findViewById(R.id.addNote);
-
         recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL));
-        RecyclerViewAdapter r=new RecyclerViewAdapter(arrayList);
-        recyclerView.setAdapter(r);
+        adapter=new RecyclerViewAdapter(arrayList,this);
+        recyclerView.setAdapter(adapter);
 
-//        listview.setOnItemClickListener((adapterView, view, i, l) -> {
-//            String item = listview.getItemAtPosition(i).toString();
-//            Intent intent2 = new Intent(getApplicationContext(), ShowNotesActivity.class);
-//            intent2.putExtra(EXTRA_MESSAGE, item);
-//            startActivity(intent2);
-//        });
+        insertNote.setOnClickListener(v->{
+            startActivity(new Intent(this, CreateNoteActivity.class));
+        });
+
+        deleteAll.setOnClickListener(v->{
+            deleteAllMethod();
+            arrayList.clear();
+            adapter.notifyDataSetChanged();
+        });
+
+
+    }
+    @Override
+    public void onItemClicked(Data data) {
+            Intent intent = new Intent(this, EditNoteActivity.class);
+            intent.putExtra(EXTRA_HEADER, data.getHeading());
+            intent.putExtra(EXTRA_DESCRIPTION, data.getDescription());
+            startActivity(intent);
+            adapter.notifyDataSetChanged();
     }
 
-    public void launchCreateActivity(View view) {
+    //read Description
+    public String readDescription(String fileName) {
+        StringBuilder whole = new StringBuilder();
+        try {
+            String line;
+            FileInputStream fis = openFileInput(fileName+".txt");
+            BufferedReader reader = new BufferedReader(new InputStreamReader(fis));
 
-        Intent intent = new Intent(this, CreateNoteActivity.class);
-        startActivity(intent);
+            while((line = reader.readLine()) != null){
+                if(whole.toString().equals(""))
+                    whole.append(line);
+                else
+                    whole.append("\n").append(line);
+            }
+            reader.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return whole.toString();
     }
 
     // deleteALl Files
@@ -81,24 +127,8 @@ public class MainActivity extends AppCompatActivity {
                 Snackbar.make(mainLayout,
                         "All Notes Are Deleted ⚡",
                         3000).show();
-          //      adapter.clear();
+
             }
-
-    }
-        //thunder
-    //🌻
-    //menu
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater=getMenuInflater();
-        inflater.inflate(R.menu.main_acitvity_menu,menu);
-        return true;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if(item.getItemId()==R.id.deleteAll)
-            deleteAllMethod();
-        return super.onOptionsItemSelected(item);
-    }
 }

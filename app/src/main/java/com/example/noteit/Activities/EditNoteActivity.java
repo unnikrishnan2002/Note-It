@@ -1,64 +1,46 @@
-package com.example.noteit;
+package com.example.noteit.Activities;
+
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
-import java.io.BufferedReader;
+
+import com.example.noteit.MainActivity;
+import com.example.noteit.R;
+
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
 
 public class EditNoteActivity extends AppCompatActivity {
 
+    private static final String EXTRA_HEADER = "com.example.noteit.HEADER";
+    private static final String EXTRA_DESCRIPTION = "com.example.noteit.DESCRIPTION";
     EditText heading,content;
-    Button save;
+    ImageView saveChanges,backFromEdit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_note);
 
+
         heading=findViewById(R.id.heading);
         content = findViewById(R.id.content);
-        save = findViewById(R.id.save);
-
+        saveChanges = findViewById(R.id.saveChanges);
+        backFromEdit=findViewById(R.id.backFromEdit);
 
         Intent intent = getIntent();
-        String header = intent.getStringExtra(ShowNotesActivity.HEADER_MSG);
+        String header = intent.getStringExtra(EXTRA_HEADER);
+        String description = intent.getStringExtra(EXTRA_DESCRIPTION);
 
-        //heading(Title)
         heading.setText(header);
+        content.setText(description);
 
-        try {
-            FileInputStream fin = openFileInput(header + ".txt");
-            BufferedReader reader = new BufferedReader(new InputStreamReader(fin));
-            String line;
-            String whole = "";
-
-            while((line = reader.readLine()) != null){
-
-                if(whole.equals("")){
-
-                    whole = whole + line;
-                }else{
-
-                    whole = whole + "\n" + line;
-                }
-            }
-
-            reader.close();
-            content.setText(whole);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        save.setOnClickListener(view -> {
+        saveChanges.setOnClickListener(view -> {
             String filename = header + ".txt";
             if(!content.getText().toString().trim().isEmpty()){
 
@@ -82,5 +64,20 @@ public class EditNoteActivity extends AppCompatActivity {
             }
 
         });
+        backFromEdit.setOnClickListener(v -> {
+            //intent
+            Intent backIntent = new Intent(getApplicationContext(), MainActivity.class);
+            backIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(backIntent);
+        });
+    }
+    // delete action
+    public void deleteMethod() {
+        File dir = getFilesDir();
+        File file = new File(dir, EXTRA_HEADER);
+        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        file.delete();
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
     }
 }

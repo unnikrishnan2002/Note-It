@@ -1,28 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
+    android:layout_height="match_parent"
     android:background="@color/primaryDark"
-    tools:context=".Activities.EditNoteActivity">
+    tools:context=".Activities.CreateNoteActivity">
 
     <RelativeLayout
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp">
+
         <ImageView
-            android:id="@+id/backFromEdit"
+            android:id="@+id/backFromCreate"
             android:layout_width="wrap_content"
-            android:background="@drawable/ic_back"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_margin="10dp"/>
+            android:layout_margin="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/ic_back" />
         <ImageView
-            android:id="@+id/saveChanges"
+            android:id="@+id/save"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/ic_check"
@@ -31,35 +36,36 @@
             android:layout_margin="10dp"
             android:backgroundTint="@color/white"/>
     </RelativeLayout>
+
     <EditText
-        android:id="@+id/heading"
+        android:id="@+id/ETHeading"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="start"
-        android:text="@string/heading"
-        android:textColor="@color/white"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="10dp"
+        android:background="@null"
         android:fontFamily="@font/manrope_bold"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginEnd="10dp"
-        android:textSize="34sp"
-        android:minHeight="48dp"
-        android:maxHeight="250dp"
-        android:layout_width="match_parent"
-        android:background="@null"/>
-    <EditText
-        android:id="@+id/content"
-        android:layout_height="wrap_content"
         android:gravity="start"
-        android:text="@string/description"
+        android:minHeight="48dp"
+        android:hint="@string/heading"
+        android:textColorHint="@color/white"
         android:textColor="@color/white"
-        android:fontFamily="@font/manrope_regular"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginEnd="10dp"
-        android:paddingTop="6dp"
-        android:textSize="16sp"
-        android:minHeight="100dp"
-        android:maxHeight="200dp"
+        android:textSize="34sp" />
+
+    <EditText
+        android:id="@+id/ETContent"
         android:layout_width="match_parent"
-        android:background="@null"/>
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="10dp"
+        android:background="@null"
+        android:fontFamily="@font/manrope_regular"
+        android:textColorHint="@color/white"
+        android:gravity="start"
+        android:minHeight="100dp"
+        android:hint="@string/description"
+        android:textColor="@color/white"
+        android:textSize="16sp" />
 </LinearLayout>

@@ -8,27 +8,67 @@
     android:background="@color/primaryDark"
     tools:context=".MainActivity">
 
-    <LinearLayout
+    <RelativeLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:textColor="@color/white"
+            android:textSize="38sp"
+            android:padding="15dp"
+            android:fontFamily="@font/manrope_bold"/>
+    </RelativeLayout>
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp">
+        android:layout_marginTop="70dp">
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:clipToPadding="true"
+            android:layout_margin="10dp"
             android:layout_height="wrap_content"/>
-    </LinearLayout>
+    </ScrollView>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/addNote"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+
+    <RelativeLayout
+        android:id="@+id/bottomSheet"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="50dp"
-        android:layout_marginBottom="60dp"
-        android:clickable="true"
-        android:onClick="launchCreateActivity"
-        app:srcCompat="@android:drawable/ic_input_add" />
+        android:background="@color/primaryLightBlack" >
 
+        <ImageView
+            android:id="@+id/deleteAll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="22dp"
+            android:background="@drawable/ic_clear" />
+    </RelativeLayout>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginBottom="25dp"
+        app:cardBackgroundColor="@color/primaryLightBlack"
+        app:cardCornerRadius="26dp"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="25dp"
+        android:layout_alignParentEnd="true">
+
+        <ImageView
+            android:id="@+id/addNote"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/addbutton"
+            android:padding="15dp"
+            android:src="@drawable/ic_plus" />
+    </androidx.cardview.widget.CardView>
 </RelativeLayout>
