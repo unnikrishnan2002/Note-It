@@ -1,9 +1,10 @@
 <resources>
     <string name="app_name">Note It</string>
     <string name="save">Save</string>
-    <string name="description">Description</string>
+    <string name="description">description</string>
     <string name="title">Title</string>
     <string name="edit">Edit</string>
     <string name="delete">delete</string>
     <string name="delete_all">Delete All</string>
+    <string name="heading">Heading</string>
 </resources>

@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:layout_height="match_parent"
     android:background="@color/primaryDark"
-    tools:context=".Activities.EditNoteActivity">
+    tools:context=".Activities.CreateNoteActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,13 +16,13 @@
         android:orientation="vertical">
 
         <RelativeLayout
-            android:id="@+id/toolbar1"
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="10dp">
 
             <ImageView
-                android:id="@+id/backFromEdit"
+                android:id="@+id/backFromCreate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
@@ -35,7 +35,7 @@
                 android:background="@drawable/ic_back" />
 
             <ImageView
-                android:id="@+id/saveChanges"
+                android:id="@+id/save"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
@@ -46,7 +46,7 @@
         </RelativeLayout>
 
         <EditText
-            android:id="@+id/heading"
+            android:id="@+id/ETHeading"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
@@ -63,7 +63,7 @@
             android:textSize="34sp" />
 
         <EditText
-            android:id="@+id/content"
+            android:id="@+id/ETContent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
@@ -87,42 +87,42 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         >
-        <LinearLayout
-            android:id="@+id/color_container"
-            android:layout_width="wrap_content"
-            android:layout_height="60dp"
-            android:gravity="center"
-            android:background="@null">
-            <ImageView
-                android:id="@+id/bluecircle1"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_margin="10dp"
-                android:background="@drawable/bluecircle" />
-            <ImageView
-                android:id="@+id/yellowcircle2"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_margin="7dp"
-                android:background="@drawable/yellowcircle" />
-            <ImageView
-                android:id="@+id/redcircle3"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_margin="7dp"
-                android:background="@drawable/redcircle"  />
-            <ImageView
-                android:id="@+id/greencircle4"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_margin="7dp"
-                android:background="@drawable/greencircle" />
-            <ImageView
-                android:id="@+id/whitecircle5"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_margin="7dp"
-                android:background="@drawable/whitecircle" />
-        </LinearLayout>
+    <LinearLayout
+        android:id="@+id/color_container"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:gravity="center"
+        android:background="@null">
+        <ImageView
+            android:id="@+id/bluecircle"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_margin="10dp"
+            android:background="@drawable/bluecircle" />
+        <ImageView
+            android:id="@+id/yellowcircle"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_margin="7dp"
+            android:background="@drawable/yellowcircle" />
+        <ImageView
+            android:id="@+id/redcircle"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_margin="7dp"
+            android:background="@drawable/redcircle"  />
+        <ImageView
+            android:id="@+id/greencircle"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_margin="7dp"
+            android:background="@drawable/greencircle" />
+        <ImageView
+            android:id="@+id/whitecircle"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_margin="7dp"
+            android:background="@drawable/whitecircle" />
+    </LinearLayout>
     </RelativeLayout>
 </RelativeLayout>

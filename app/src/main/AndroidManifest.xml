@@ -10,19 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NoteIt">
         <activity
-            android:name=".EditNoteActivity"
+            android:name=".Activities.EditNoteActivity"
             android:exported="true"
             android:parentActivityName=".MainActivity"
             android:label="Edit Note"/>
 
         <activity
-            android:name=".ShowNotesActivity"
-            android:exported="true"
-            android:parentActivityName=".MainActivity"
-            android:label="Show Note"/>
-
-        <activity
-            android:name=".CreateNoteActivity"
+            android:name=".Activities.CreateNoteActivity"
             android:exported="true"
             android:parentActivityName=".MainActivity"
             android:label="Create Note" />
