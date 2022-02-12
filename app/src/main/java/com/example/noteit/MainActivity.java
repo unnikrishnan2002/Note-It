@@ -3,6 +3,7 @@ package com.example.noteit;
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
@@ -78,6 +79,24 @@ public class MainActivity extends AppCompatActivity  implements  SelectListener{
             arrayList.clear();
             adapter.notifyDataSetChanged();
         });
+
+        //swipe to delete
+        new ItemTouchHelper((new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+                return false;
+            }
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                arrayList.remove(viewHolder.getAdapterPosition());
+                deleteMethod(viewHolder.getAdapterPosition());
+                adapter.notifyItemRemoved(viewHolder.getLayoutPosition());
+                Snackbar.make(mainLayout,
+                        "Note Deleted ⚡",
+                        3000).show();
+            }
+        })).attachToRecyclerView(recyclerView);
+
     }
     @Override
     public void onItemClicked(Data data) {
@@ -110,7 +129,13 @@ public class MainActivity extends AppCompatActivity  implements  SelectListener{
 
         return whole.toString();
     }
-
+    // delete Single File
+    public void deleteMethod(int index) {
+        File dir = getFilesDir();
+        File file = new File(String.valueOf(dir));
+        File[] files= file.listFiles();
+        files[index].delete();
+    }
     // deleteALl Files
     public void deleteAllMethod() {
         File dir = getFilesDir();
@@ -125,12 +150,9 @@ public class MainActivity extends AppCompatActivity  implements  SelectListener{
             else{
                 for (File value : files)
                     value.delete();
-
                 Snackbar.make(mainLayout,
                         "All Notes Are Deleted ⚡",
                         3000).show();
-
             }
     }
-
 }
